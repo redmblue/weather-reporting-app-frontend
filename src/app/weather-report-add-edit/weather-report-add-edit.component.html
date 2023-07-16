@@ -1,0 +1,57 @@
+<!--will be routing and optiona timestamp. can do a string and if it is "create" set add to true, if not set add to false (edit mode)-->
+<!--Make a simple back/cacnel button that routes them back. Or(better) make a function and refresh+route-->
+<div *ngIf="add">
+  <h2>Create your Weather Report</h2>
+</div>
+<div *ngIf="!add">
+  <div *ngIf="weather_report">
+    <h2>Edit the weather report at {{weather_report.timestamp}}</h2>
+  </div>
+</div>
+<mat-form-field>
+  <mat-label>City</mat-label>
+  <input matInput placeholder="Ex. Detroit" [(ngModel)]="formData.city" name="city">
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Zip Code</mat-label>
+  <input matInput placeholder="Ex. 48226 or N9A 7H7" [(ngModel)]="formData.zipCode" name="zip_code">
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Select</mat-label>
+  <mat-select [(ngModel)]="formData.type_of_severe_weather" name="type_of_severe_weather">
+    <mat-option value="Thunderstorm">Thunderstorm</mat-option>
+    <mat-option value="Blizzard">Blizzard</mat-option>
+    <mat-option value="Tornado">Tornado</mat-option>
+    <mat-option value="High Wind">High Wind</mat-option>
+    <mat-option value="Heavy Rain">Heavy Rain</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Severity</mat-label>
+  <input matInput placeholder="0-10 Only" [(ngModel)]="formData.severity" name="severity">
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Notes</mat-label>
+  <input matInput placeholder="Optional" [(ngModel)]="formData.notes" name="notes">
+</mat-form-field>
+<div *ngIf="add">
+  <button mat-raised-button color="primary" (click)="createReport()">Submit</button>
+</div>
+<div *ngIf="!add">
+  <button mat-raised-button color="primary" (click)="updateReport()">Submit</button>
+</div>
+
+<!--
+<div *ngIf="!add">
+  <div *ngIf="weather_report">
+    <h2>Edit your weather report: {{weather_report.timestamp}}</h2>
+
+  </div>
+  <div *ngIf="!weather_report">
+    <h2 style="color:red;">ERROR</h2>
+  </div>
+</div>-->
+
+<!-- Add form and pre-fill with weather report data -->
+<!-- Validator and then done for the day. Tomorrow work on tailwind/visual improvements. -->
+<!--Should ALWAYS happen - REMEMBER USE TAILWINDS AND MATERIAL. FOR TOP BAR SET UP TAILWINDS AND ASK CHAT GPT TO DO/FOR HELP/FOR ADVICE-->

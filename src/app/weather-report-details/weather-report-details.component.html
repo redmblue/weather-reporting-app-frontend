@@ -1,0 +1,9 @@
+<h2>Weather Report Details:</h2>
+<!--<button class="bg-sky-500 hover:bg-sky-700 px-5 py-2 text-sm leading-5 rounded-full font-semibold text-white">Test</button>-->
+<div *ngIf="weather_report">
+  <h4>Time Stamp: {{weather_report.timestamp}}</h4>
+  <p>City: {{weather_report.city}} <br>
+  Zip Code: {{weather_report.zipCode}} <br>
+    Severity: {{weather_report.severity}} </p>
+  <button mat-raised-button color="warn" (click)="deleteItem(weather_report)">Delete</button>
+</div>

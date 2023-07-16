@@ -1,0 +1,7 @@
+{
+  "/api/*": {
+    "target": "http://weatherreportapitodeploy20230531141202.azurewebsites.net",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}

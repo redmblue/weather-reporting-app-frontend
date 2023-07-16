@@ -1,0 +1,42 @@
+<!--Weather reports list - use ai generated image for top bar btw-->
+<div class="spinner-container" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>
+<h2>Weather Reports:</h2>
+<!--<button type="button" (click)="refresh()">Refresh Reports</button>-->
+<button mat-raised-button color="primary" (click)="refresh()">Refresh Reports</button>
+<p><br></p>
+<button mat-raised-button color="basic" [routerLink]="['/AddOrEditWeatherReport', 'add']">Add Report</button>
+
+<div *ngIf="weather_reports" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+  <div *ngFor="let weather_report of weather_reports">
+    <div [style.background-color]="getSeverityClass(weather_report.severity)" class="bg-white rounded-lg shadow-lg p-6 text-white"> <!--class get severity is causing text to be white-->
+      <div class="flex items-center justify-center mb-4">
+        <img src="https://weather-report-system-cdn.s3.us-east-2.amazonaws.com/logo.jpg" alt="Weather Image" class="w-16 h-16">
+      </div>
+      <div class="mb-4">
+        <p class="text-xl font-bold mb-2">
+          <a [title]="weather_report.city + '\'s weather report at' + weather_report.timestamp"
+             [routerLink]="['/WeatherReports', weather_report.timestamp]">
+            Type of Severe Weather: {{ weather_report.type_Of_Severe_Weather }}
+          </a>
+        </p>
+
+        <p class="text-white-500">Zip Code: {{ weather_report.zipCode }}</p>
+      </div>
+      <div>
+        <p class="text-white-500">City: {{ weather_report.city }}</p>
+        <p class="text-white-500">Severity:{{weather_report.severity}}
+          <!--<span [class]="getSeverityClass(weather_report.severity)">{{ weather_report.severity }}</span>-->
+        </p>
+      </div>
+      <div *ngIf="weather_report.notes">
+        <div class="mt-4">
+          <p class="text-white-500">Notes: {{ weather_report.notes }}</p>
+        </div>
+      </div>
+      <button mat-raised-button color="accent"
+              [routerLink]="['/AddOrEditWeatherReport', weather_report.timestamp]">Edit Report</button>
+    </div>
+  </div>
+</div>
